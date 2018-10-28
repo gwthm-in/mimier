@@ -26,12 +26,12 @@ cmd_gen() {
 
 cmd_get() {
     local otp=$(cmd_gen $1)
-    echo $otp
+    echo $otp | tr -d '\n'
 }
 
 cmd_copy() {
     local otp=$(cmd_gen $1)
-    echo $otp | pbcopy
+    echo $otp | tr -d '\n' | pbcopy
 }
 
 if [ "$#" -gt 3 ]; then
