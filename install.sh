@@ -14,17 +14,17 @@
 #
 
 if ! [ -x "$(command -v git)" ]; then
-  printf "[-]: git is not installed"
-  printf "[?]: Installing git"
+  printf "[-]: git is not installed\n"
+  printf "[?]: Installing git\n"
   brew install git
-  printf "[+]: git is installed successfully"
+  printf "[+]: git is installed successfully\n"
 fi
 
 if ! [ -x "$(command -v oathtool)" ]; then
-  printf "[-]: oathtool is not installed"
-  printf "[?]: Installing oathtool"
+  printf "[-]: oathtool is not installed\n"
+  printf "[?]: Installing oathtool\n"
   brew install oath-toolkit
-  printf "[+]: oathtool is installed successfully"
+  printf "[+]: oathtool is installed successfully\n"
 fi
 
 git clone https://github.com/gowtham-sai/mimier.git /tmp/mimier
@@ -32,7 +32,7 @@ cp /tmp/mimier/mimier /usr/local/bin/
 cp -r /tmp/mimier/mimier.workflow ~/Library/Services/mimier.workflow
 rm -rf /tmp/mimier
 
-printf "\n[+] mimier service installed"
-printf "\n[+]Consider setting keyboard shorcut\n"
+printf "[+]: mimier service installed\n"
+printf "[+]: Consider setting keyboard shorcut\n\n"
 
 mimier
