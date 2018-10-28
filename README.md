@@ -1,5 +1,6 @@
 # Mimier (Only for Mac)
-  Copies OTP to clipboard
+  Save OTP of a particular in key chain
+  Print or copy OTP for a particular service
 
 ## Why?
   I use otp for most of the accounts. Currently I have around 12 accounts which needs otp. Though there are lot of pretty good apps for otps such as [GAuthenticator](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en_IN), [Authneticator (Chrome)](https://chrome.google.com/webstore/detail/authenticator/bhghoamapcdpbohphigoooaddinpkbai?hl=en) and etc. I don't prefer to use mouse so much.

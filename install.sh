@@ -34,5 +34,4 @@ cp -r /tmp/mimier/mimier.workflow ~/Library/Services/mimier.workflow
 printf "\n[+] mimier service installed"
 rm -rf /tmp/mimier
 printf "[+]Consider setting keyboard shorcut"
-rm -
 mimier
