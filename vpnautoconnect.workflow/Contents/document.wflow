@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AMApplicationBuild</key>
+	<string>444.38</string>
+	<key>AMApplicationVersion</key>
+	<string>2.9</string>
+	<key>AMDocumentVersion</key>
+	<string>2</string>
+	<key>actions</key>
+	<array>
+		<dict>
+			<key>action</key>
+			<dict>
+				<key>AMAccepts</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Optional</key>
+					<true/>
+					<key>Types</key>
+					<array>
+						<string>com.apple.applescript.object</string>
+					</array>
+				</dict>
+				<key>AMActionVersion</key>
+				<string>1.0.2</string>
+				<key>AMApplication</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>AMParameterProperties</key>
+				<dict>
+					<key>source</key>
+					<dict/>
+				</dict>
+				<key>AMProvides</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Types</key>
+					<array>
+						<string>com.apple.applescript.object</string>
+					</array>
+				</dict>
+				<key>ActionBundlePath</key>
+				<string>/System/Library/Automator/Run AppleScript.action</string>
+				<key>ActionName</key>
+				<string>Run AppleScript</string>
+				<key>ActionParameters</key>
+				<dict>
+					<key>source</key>
+					<string>navigateToNetwork()delayExecution(1)set listOfNotConnectedVPNS to getUserInterestedVPNs()repeat with notConnectedVPN in listOfNotConnectedVPNS	navigateToVPN(notConnectedVPN)	set vpnPassword to getPassword()	connectWithPassword(vpnPassword)	delayExecution(1)end repeatquitNetwork()on quitNetwork()	tell application "System Preferences" to quitend quitNetworkon navigateToNetwork()	tell application "System Preferences"		activate		reveal pane id "com.apple.preference.network"	end tellend navigateToNetworkon getUserInterestedVPNs()	tell application "System Events" to tell process "System Preferences"		tell scroll area 1 of window 1			set choices to (value of static text of rows of table 1 whose value of static text 1 contains "Not Connected" and value of static text 1 does not contain "Bluetooth" and value of static text 1 does not contain "Thunderbolt")			choose from list choices with prompt "Please make your selection" with multiple selections allowed without empty selection allowed			return the result		end tell	end tellend getUserInterestedVPNson navigateToVPN(vpnName)	navigateToNetwork()	tell application "System Events" to tell process "System Preferences"		tell window 1			tell table 1 of scroll area 1				select (row 1 whose value of static text 1 contains vpnName)			end tell		end tell	end tellend navigateToVPNon connectWithPassword(vpnPassword)	tell application "System Events" to tell process "System Preferences"		tell window 1			tell group 1				click button "Authentication Settings…"			end tell			tell sheet 1				set value of text field 2 to vpnPassword				click button "Ok"			end tell			tell group 1				click button "Connect"			end tell						tell sheet 1				click button "Apply"			end tell					end tell	end tellend connectWithPasswordon getPassword()	set vpnPassword to ""	set serviceName to "gojek"	set mimierPath to "/usr/local/bin/mimier"	set mimierExists to checkMimierExists(mimierPath)	set otpCommand to mimierPath &amp; " get " &amp; serviceName	if mimierExists then		set vpnPassword to do shell script otpCommand	else		tell me			activate			set vpnPassword to the text returned of (display dialog "Mimier is not installed. Please enter otp" default answer "" buttons {"OK"} default button 1)		end tell	end if	return vpnPasswordend getPasswordon checkMimierExists(theFile) -- (String) as Boolean	tell application "System Events"		if exists file theFile then			return true		else			return false		end if	end tellend checkMimierExistson delayExecution(forSeconds)	delay forSecondsend delayExecutionon displayNotification(vpnName)	display notification "Insider VPN Utils:" with title "Connected to " subtitle vpnNameend displayNotification</string>
+				</dict>
+				<key>BundleIdentifier</key>
+				<string>com.apple.Automator.RunScript</string>
+				<key>CFBundleVersion</key>
+				<string>1.0.2</string>
+				<key>CanShowSelectedItemsWhenRun</key>
+				<false/>
+				<key>CanShowWhenRun</key>
+				<true/>
+				<key>Category</key>
+				<array>
+					<string>AMCategoryUtilities</string>
+				</array>
+				<key>Class Name</key>
+				<string>RunScriptAction</string>
+				<key>InputUUID</key>
+				<string>39CA0C20-653E-4352-8766-8DE65E90C011</string>
+				<key>Keywords</key>
+				<array>
+					<string>Run</string>
+				</array>
+				<key>OutputUUID</key>
+				<string>833599FF-A825-491A-8125-CE75F9BBB996</string>
+				<key>UUID</key>
+				<string>8C9F6488-CD23-4317-8AEC-EAF386D6E13E</string>
+				<key>UnlocalizedApplications</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>arguments</key>
+				<dict>
+					<key>0</key>
+					<dict>
+						<key>default value</key>
+						<string>on run {input, parameters}
+	
+	(* Your script goes here *)
+	
+	return input
+end run</string>
+						<key>name</key>
+						<string>source</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>0</string>
+					</dict>
+				</dict>
+				<key>conversionLabel</key>
+				<integer>0</integer>
+				<key>isViewVisible</key>
+				<true/>
+				<key>location</key>
+				<string>309.000000:247.000000</string>
+				<key>nibPath</key>
+				<string>/System/Library/Automator/Run AppleScript.action/Contents/Resources/Base.lproj/main.nib</string>
+			</dict>
+			<key>isViewVisible</key>
+			<true/>
+		</dict>
+	</array>
+	<key>connectors</key>
+	<dict/>
+	<key>workflowMetaData</key>
+	<dict>
+		<key>workflowTypeIdentifier</key>
+		<string>com.apple.Automator.workflow</string>
+	</dict>
+</dict>
+</plist>
