@@ -30,8 +30,9 @@ fi
 git clone https://github.com/gowtham-sai/mimier.git /tmp/mimier
 cp /tmp/mimier/mimier /usr/local/bin/
 cp -r /tmp/mimier/mimier.workflow ~/Library/Services/mimier.workflow
+rm -rf /tmp/mimier
 
 printf "\n[+] mimier service installed"
-rm -rf /tmp/mimier
-printf "[+]Consider setting keyboard shorcut"
+printf "\n[+]Consider setting keyboard shorcut\n"
+
 mimier

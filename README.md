@@ -22,6 +22,12 @@ brew install oath-toolkit
 ```
 
 ## Installation
+##### Automatic Installation:
+Install scripts just wraps the above mentioned commands, and cleans up.
+```
+sudo curl -sL http://mimier.gowtham-sai.com/install.sh | bash
+```
+
 ##### Manual Installation:
 Clone the github repo either by http or ssh way.
 ```bash
@@ -37,12 +43,6 @@ cp ./mimier /usr/local/bin/
 Copy the mimer.automator folder to `~/Library/Services/`
 ```bash
 cp -r ./mimier.workflow ~/Library/Services/mimier.workflow
-```
-
-##### Automatic Installation:
-Install scripts just wraps the above mentioned commands, and cleans up.
-```
-curl http://mimier.gowtham-sai.com/install.sh | bash
 ```
 
 ##### Setting keyboard shortcut
