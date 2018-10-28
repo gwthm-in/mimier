@@ -4,11 +4,9 @@ APP_NAME="TheInsider Auth"
 usage() {
     printf "################### TheInsider Auth ###################\n\n"
     printf "To add a service:\t mimier add gojek secrettoken\n"
-    printf "\t\t\t mimier save gojek secrettoken\n\n"
     printf "To delete service:\t mimier del gojek\n"
-    printf "\t\t\t mimier delete gojek\n\n"
-    printf "To generate Otp:\t mimier gen gojek\n"
-    printf "\t\t\t mimier generate gojek\n\n"
+    printf "To print OTP:\t\t mimier get gojek\n"
+    printf "To copy OTP:\t\t mimier copy gojek\n"
 }
 
 
@@ -21,9 +19,19 @@ cmd_del() {
 }
 
 cmd_gen() {
-    otpkey=`security find-generic-password -a $1 -s "$APP_NAME" -w`
-    otp=`/usr/local/bin/oathtool --totp -b $otpkey`
-    echo $otp | tr -d '\n' | pbcopy
+    local otpkey=`security find-generic-password -a $1 -s "$APP_NAME" -w`
+    local otp=`/usr/local/bin/oathtool --totp -b $otpkey`
+    echo $otp | tr -d '\n'
+}
+
+cmd_get() {
+    local otp=$(cmd_gen $1)
+    echo $otp
+}
+
+cmd_copy() {
+    local otp=$(cmd_gen $1)
+    echo $otp | pbcopy
 }
 
 if [ "$#" -gt 3 ]; then
@@ -31,7 +39,7 @@ if [ "$#" -gt 3 ]; then
     usage
     exit 1
 elif [ "$#" -eq 3 ]; then
-    if [ "$1" == "add" ] || [ "$1" == "save" ]; then
+    if [ "$1" == "add" ]; then
         cmd_add $2 $3
         exit 0
     else
@@ -40,11 +48,15 @@ elif [ "$#" -eq 3 ]; then
         exit 1
     fi
 elif [ "$#" -eq 2 ]; then
-    if [ "$1" == "gen" ] || [ "$1" == "generate" ]; then
-        cmd_gen $2
+    if [ "$1" == "get" ]; then
+        cmd_get $2
         exit 0
-    elif [ "$1" == "del" ] || [ "$1" == "delete" ]; then
+    elif [ "$1" == "copy" ]; then
+        cmd_copy $2
+        exit 0
+    elif [ "$1" == "del" ]; then
         cmd_del $2
+        exit 0
     else
         echo "Invalid Arguments"
         usage
