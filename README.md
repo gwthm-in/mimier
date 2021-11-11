@@ -28,7 +28,7 @@ brew install oath-toolkit
 ##### Automatic Installation:
 Install scripts just wraps the above mentioned commands, and cleans up.
 ```
-sudo curl -sL http://mimier.gowtham-sai.com/install.sh | bash
+sudo curl -sL https://raw.githubusercontent.com/gowtham-sai/mimier/master/install.sh | bash
 ```
 
 ##### Manual Installation:
